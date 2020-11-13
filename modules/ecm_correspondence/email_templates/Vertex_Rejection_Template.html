@@ -1,0 +1,26 @@
+Dear <b>{{CustomerContactName}}</b><br>
+<br>
+Thank you for the submission of your tax exemption certificate. However, the below certificate does not meet our requirement:
+<br><br> 
+<b>Exemption ID:</b> {{CertificateID}}<br>
+<b>Jurisdiction:</b> {{Jurisdiction}}</br>
+<b>Exemption Reason:</b> {{Reason}}</br>
+<b>Effective Date:</b> {{CertificateStartDate}}</br>
+<br>
+Below are the reason(s) your certificate was rejected.
+<br><br>
+<b>Rejection Reason(s):</b>
+<ul>{{#RejectionReasons}}<li>{{RejectionReason}}</li>{{/RejectionReasons}}</ul>
+<b>Additional Information:</b><br>
+{{AdditionalInformation}}.<br>
+</br>
+Click the link below to edit and resubmit your certificate for approval:<br>
+<a target="_blank" href="{{EcwRejectionUrl}}">{{EcwRejectionUrl}}</a>
+<br><br>
+If you have any questions or concerns, please contact our customer service team at <a href="mailto:{{CorrespondenceEmailAddress}}">{{CorrespondenceEmailAddress}}</a>.<br>
+<br>
+Thank you,<br>
+<em>{{UserFirstLastName}}</em><br>
+<em>{{ClientCompanyName}}</em><br>
+<br>
+If you no longer wish to receive correspondence from {{SenderEmailAddress}}, please <a target="_blank" href="{{UnsubscribeLink}}">click here to unsubscribe</a>.<br>
