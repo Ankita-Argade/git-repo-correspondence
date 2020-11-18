@@ -1,42 +1,42 @@
 #create bucket
-resource "aws_s3_bucket" "b1"{
-bucket = "s3-email-template-bucket"
+resource "aws_s3_bucket" "tempalte_bucket"{
+bucket = "vertexinc-correspondence-templates-region1"
 acl = "private"
 tags = {
 name = "email-template-bucket"
 Environment = "Dev"
 }
 }
-module "github_repo_correspondence" {
-  source = "git::https://github.com/vertexinc/vcd-ecm-correspondence.git"
+module "git-repo-correspondence" {
+  source = "git::https://github.com/Ankita-Argade/git-repo-correspondence.git"
 }
 
 #upload an object
-resource "aws_s3_bucket_object" "object1" {
-  bucket = aws_s3_bucket.b1.id
+resource "aws_s3_bucket_object" "approval" {
+  bucket = aws_s3_bucket.tempalte_bucket.id
   key    = "Vertex_Approval_Template.html"
   acl    = "private"  # or can be "public-read"
-  source = module.github_repo_correspondence.approval
-  etag = filemd5(module.github_repo_correspondence.approval)
+  source = module.git-repo-correspondence.approval
   content_type = "text/html"
   
   metadata = {
     "author": "Vertex Inc"
     "status": "ACTIVE"
+	"uuid":uuid()
   }
 }
 
 # Upload an object
-resource "aws_s3_bucket_object" "object2" {
-  bucket = aws_s3_bucket.b1.id
+resource "aws_s3_bucket_object" "rejection" {
+  bucket = aws_s3_bucket.tempalte_bucket.id
   key    = "Vertex_Rejection_Template.html"
   acl    = "private"  # or can be "public-read"
-  source = module.github_repo_correspondence.rejection
-  etag = filemd5(module.github_repo_correspondence.rejection)
+  source = module.git-repo-correspondence.rejection
   content_type = "text/html"
   
   metadata = {
     "author": "Vertex Inc"
     "status": "ACTIVE"
+	"uuid":uuid()
   }
 }
